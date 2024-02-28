@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import time
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument("--start-maximized")
@@ -25,13 +26,16 @@ try:
 
     word_elements = driver.find_elements(By.CLASS_NAME, "word")
 
+    time.sleep(1)
+
+    start_time = time.time()  # Tempo inicial
+
     for word_element in word_elements:
         texto = word_element.text
         auto.typewrite(texto + ' ')
         print(texto)
     
     while True:
-
         last_element = word_elements[-1]
         new_word_elements = last_element.find_elements(By.XPATH, "./following-sibling::div[contains(@class, 'word')]")
 
@@ -41,6 +45,10 @@ try:
             print(texto)
 
         word_elements.extend(new_word_elements)
+        
+        # Verifica se já passaram 30 segundos
+        if time.time() - start_time >= 30:
+            break
     
 except Exception as e:
     print('Erro:', e)
