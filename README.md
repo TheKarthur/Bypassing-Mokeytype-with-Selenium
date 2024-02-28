@@ -1,2 +1,2 @@
 # Bypassing-Mokeytype-with-Selenium
-Demonstrando a usabilidade da biblioteca Selenium no site https://monkeytype.com/
+Neste Repositório é realizada um teste para verificar a usabilidade da biblioteca Selenium no site https://monkeytype.com/ (site para testar nossa velocidade de digitação)
